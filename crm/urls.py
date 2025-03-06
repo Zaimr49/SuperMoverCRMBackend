@@ -1,8 +1,14 @@
 from django.urls import path
-from .views import LeadListView, LeadDetailView, SalesDashboardView
+from .views import fetch_rea_leads, fetch_flk_auth_token, fetch_flk_leads
 
 urlpatterns = [
-    path('leads/', LeadListView.as_view(), name='lead-list'),
-    path('leads/<int:pk>/', LeadDetailView.as_view(), name='lead-detail'),
-    path('sales/dashboard/', SalesDashboardView.as_view(), name='sales-dashboard'),
+    
+    # REA API ENDPOINTS
+    path('read/leads/', fetch_rea_leads, name='fetch-rea-leads'),
+
+    # FLG API ENDPOINTS
+    path('flk/token/', fetch_flk_auth_token, name='fetch-flk-auth-token'),
+    path('flk/leads/', fetch_flk_leads, name='fetch-flk-leads'),
+
+    
 ]

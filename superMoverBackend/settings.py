@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_extensions',
     'core',
     'crm',
     'integration'
@@ -125,3 +126,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# API_KEYS
+REA_API_KEY = ""
+FLK_API_BASE_URL = "https://api.flk.com/leads"
+FLK_USERNAME = "~~~~"
+FLK_PASSWORD = "~~~~"
