@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,13 +40,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'django_extensions',
+    'corsheaders',
     'core',
     'crm',
     'integration'
 ]
 
+AUTH_USER_MODEL = 'core.User'  # Replace 'your_app' with your actual app
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # Add this line
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +66,31 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Allow Vite frontend
+]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS"
 ]
 
 ROOT_URLCONF = 'superMoverBackend.urls'
@@ -128,8 +167,21 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# API_KEYS
+from crm.utils import get_flk_access_token
+
+
+# FLK_API_KEYS
+FLK_STAGING_API_BASE_URL = "https://api.staging.flkitover.com/v2"
+FLK_PRODUCTION_API_BASE_URL = "https://api.flkitover.com"
+FLK_API_BASE_URL = FLK_STAGING_API_BASE_URL
+FLK_USERNAME = os.getenv('flg_username')
+FLK_PASSWORD = os.getenv('flg_password')
+FLK_ACCESS_TOKEN = None
+FLK_TOKEN_EXPIRY = None
+
+# REA_API_KEYS
 REA_API_KEY = ""
-FLK_API_BASE_URL = "https://api.flk.com/leads"
-FLK_USERNAME = "~~~~"
-FLK_PASSWORD = "~~~~"
+
+# run function on init
+get_flk_access_token()
+
