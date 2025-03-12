@@ -12,9 +12,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+# At the top, after load_dotenv()
+
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY', 'YOUR_ACTUAL_GOOGLE_API_KEY')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -45,7 +48,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'core',
     'crm',
-    'integration'
+    'integration',
+    'leads'
 ]
 
 AUTH_USER_MODEL = 'core.User'  # Replace 'your_app' with your actual app
