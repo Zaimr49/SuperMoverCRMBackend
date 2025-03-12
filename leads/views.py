@@ -50,11 +50,12 @@ def create_lead(request):
 #         return Response(suggestions, status=status.HTTP_200_OK)
 #     else:
 #         return Response({"error": "Failed to fetch suggestions"}, status=response.status_code)
+
 @api_view(['GET'])
 def address_autocomplete(request):
     """
     Return a list of possible addresses based on the 'query' GET parameter
-    using OpenStreetMap's Nominatim API.
+    using OpenStreetMap's Nominatim API, including detailed address info.
     """
     query = request.GET.get('query', '')
     if not query:
@@ -64,21 +65,26 @@ def address_autocomplete(request):
     params = {
         "q": query,
         "format": "json",
-        "addressdetails": 1,  # Set to 1 to get more details if desired
-        "limit": 5,           # Adjust the number of results as needed
-        "countrycodes": "au"
+        "addressdetails": 1,  # Set to 1 to get more details in 'address'
+        "limit": 5,
+        "countrycodes": "au"  # restrict to Australia, if desired
     }
     headers = {
-    "User-Agent": "SuperMoverCRM/1.0 (zaeemr49@gmail.com)"
-}
-
+        "User-Agent": "SuperMoverCRM/1.0 (zaeemr49@gmail.com)"
+    }
 
     response = requests.get(nominatim_url, params=params, headers=headers)
 
     if response.status_code == 200:
         data = response.json()
-        # Extract a list of address suggestions. Here we use the 'display_name' field.
-        suggestions = [item.get("display_name", "") for item in data]
+        # Instead of returning just the display_name (string),
+        # return an object with both display_name and address.
+        suggestions = []
+        for item in data:
+            suggestions.append({
+                "display_name": item.get("display_name", ""),
+                "address": item.get("address", {})
+            })
         return Response(suggestions, status=status.HTTP_200_OK)
     else:
         return Response({"error": "Failed to fetch suggestions"}, status=response.status_code)
