@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/crm/', include('crm.urls')),
     path('api/integration/', include('integration.urls')),
     path('api/leads/', include('leads.urls')),
+    path('api/signupform/', include('signupform.urls')),
 ]
