@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import fetch_flk_auth_token, fetch_flk_leads
+from .views import fetch_flk_auth_token, fetch_flk_leads_from_db, fetch_flk_leads_from_api
 
 urlpatterns = [
     
@@ -8,7 +8,8 @@ urlpatterns = [
 
     # FLG API ENDPOINTS
     path('flk/token/', fetch_flk_auth_token, name='fetch-flk-auth-token'),
-    path('flk/leads/', fetch_flk_leads, name='fetch-flk-leads'),
+    path('flk/leads-api/', fetch_flk_leads_from_api, name='fetch-flk-leads-api'),
+    path('flk/leads-db/', fetch_flk_leads_from_db, name='fetch-flk-leads-db'),
 
     
 ]

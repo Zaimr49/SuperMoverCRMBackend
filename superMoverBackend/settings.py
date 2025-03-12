@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-# At the top, after load_dotenv()
-
+from datetime import timedelta
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -50,7 +49,7 @@ INSTALLED_APPS = [
     'crm',
     'integration',
     'leads',
-    'signupform',
+    'signupform'
 ]
 
 AUTH_USER_MODEL = 'core.User'  # Replace 'your_app' with your actual app
@@ -61,6 +60,19 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),  # Change as needed
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # Change as needed
+    "ROTATE_REFRESH_TOKENS": True,  # Rotates refresh tokens on use
+    "BLACKLIST_AFTER_ROTATION": True,  # Blacklist old refresh tokens
+    "ALGORITHM": "HS256",  # Default JWT algorithm
+    "SIGNING_KEY": SECRET_KEY,  # Uses Django's secret key
+    "AUTH_HEADER_TYPES": ("Bearer",),  # Prefix for authorization
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+}
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Add this line
