@@ -50,7 +50,9 @@ INSTALLED_APPS = [
     'integration',
     'leads',
     'signupform',
-    "salesdashboard",
+    'salesdashboard',
+    'useraccess',
+    
 ]
 
 AUTH_USER_MODEL = 'core.User'  # Replace 'your_app' with your actual app

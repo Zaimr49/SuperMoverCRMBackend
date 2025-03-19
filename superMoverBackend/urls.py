@@ -25,4 +25,5 @@ urlpatterns = [
     path('api/leads/', include('leads.urls')),
     path('api/signupform/', include('signupform.urls')),
     path('api/salesdashboard/', include('salesdashboard.urls')),
+    path('api/useraccess/', include('useraccess.urls')),
 ]
