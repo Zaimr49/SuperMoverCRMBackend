@@ -16,7 +16,7 @@ from datetime import timedelta
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY', 'YOUR_ACTUAL_GOOGLE_API_KEY')
+""" GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY', 'YOUR_ACTUAL_GOOGLE_API_KEY') """
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -43,16 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_celery_beat',
     'django_extensions',
     'corsheaders',
     'core',
     'crm',
-    'integration',
-    'leads',
-    'signupform',
-    'salesdashboard',
-    'useraccess',
-    
+    'integration'
 ]
 
 AUTH_USER_MODEL = 'core.User'  # Replace 'your_app' with your actual app
@@ -163,6 +159,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# CELERY SETTINGS
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -202,6 +202,6 @@ FLK_TOKEN_EXPIRY = None
 # REA_API_KEYS
 REA_API_KEY = ""
 
-# run function on init
-get_flk_access_token()
+# run function on ini
+# get_flk_access_token()
 

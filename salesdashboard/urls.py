@@ -16,4 +16,5 @@ urlpatterns = [
     path('retailers/', retailers, name='retailers'),
     path('commission-tracking/', commission_tracking, name='commission_tracking'),
     path('financial-reconciliation/', financial_reconciliation, name='financial_reconciliation'),
+    """ path('address-autocomplete/', address_autocomplete, name='address_autocomplete'), """
 ]

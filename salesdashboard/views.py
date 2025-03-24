@@ -65,3 +65,40 @@ def financial_reconciliation(request):
         ]
     }
     return Response(data)
+
+""" 
+@api_view(['GET'])
+def address_autocomplete(request):
+   
+    query = request.GET.get('query', '')
+    if not query:
+        return Response([], status=status.HTTP_200_OK)
+
+    nominatim_url = "https://nominatim.openstreetmap.org/search"
+    params = {
+        "q": query,
+        "format": "json",
+        "addressdetails": 1,  # Set to 1 to get more details in 'address'
+        "limit": 5,
+        "countrycodes": "au"  # restrict to Australia, if desired
+    }
+    headers = {
+        "User-Agent": "SuperMoverCRM/1.0 (zaeemr49@gmail.com)"
+    }
+
+    response = requests.get(nominatim_url, params=params, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        # Instead of returning just the display_name (string),
+        # return an object with both display_name and address.
+        suggestions = []
+        for item in data:
+            suggestions.append({
+                "display_name": item.get("display_name", ""),
+                "address": item.get("address", {})
+            })
+        return Response(suggestions, status=status.HTTP_200_OK)
+    else:
+        return Response({"error": "Failed to fetch suggestions"}, status=response.status_code)
+ """
