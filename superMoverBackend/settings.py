@@ -84,28 +84,23 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Allow Vite frontend
-     "https://proud-pond-0e49cde1e.6.azurestaticapps.net",
-    "http://127.0.0.1:8080",
-    "https://supermover-backend.azurewebsites.net"
-    
-    
-    
+    "https://proud-pond-0e49cde1e.6.azurestaticapps.net",
+    "https://supermover-backend.azurewebsites.net",
+    "http://localhost:5173",  # If testing locally
+    "http://127.0.0.1:8080"
 ]
+
 
 CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins (for testing, not recommended in production)
 
-# OR explicitly allow your frontend domain
-CORS_ALLOWED_ORIGINS = [
-    "https://proud-pond-0e49cde1e.6.azurestaticapps.net",
-    "http://127.0.0.1:8080",  # Include if testing locally
-]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://supermover-backend.azurewebsites.net",
     "https://proud-pond-0e49cde1e.6.azurestaticapps.net"
 ]
+
 
 
 CORS_ALLOW_HEADERS = [
@@ -119,6 +114,7 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
+
 
 CORS_ALLOW_METHODS = [
     "GET",
