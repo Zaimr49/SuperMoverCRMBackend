@@ -89,7 +89,24 @@ CORS_ALLOWED_ORIGINS = [
      "https://proud-pond-0e49cde1e.6.azurestaticapps.net",
     "http://127.0.0.1:8080",
     "https://supermover-backend.azurewebsites.net"
+    
+    
+    
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins (for testing, not recommended in production)
+
+# OR explicitly allow your frontend domain
+CORS_ALLOWED_ORIGINS = [
+    "https://proud-pond-0e49cde1e.6.azurestaticapps.net",
+    "http://127.0.0.1:8080",  # Include if testing locally
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://supermover-backend.azurewebsites.net",
+    "https://proud-pond-0e49cde1e.6.azurestaticapps.net"
+]
+
 
 CORS_ALLOW_HEADERS = [
     "accept",
