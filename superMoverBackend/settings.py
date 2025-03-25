@@ -86,6 +86,9 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Allow Vite frontend
+     "https://proud-pond-0e49cde1e.6.azurestaticapps.net",
+    "http://127.0.0.1:8080",
+    "https://supermover-backend.azurewebsites.net"
 ]
 
 CORS_ALLOW_HEADERS = [
