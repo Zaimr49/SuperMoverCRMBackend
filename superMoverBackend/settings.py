@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-(w$^-dgy7kp+x7ma54(k#q&t1r4!#%9^z=2lukv9nbr4mwsi_g
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["13.48.193.139"]
+# ALLOWED_HOSTS = ["13.48.193.139"]
 
 
 
@@ -88,23 +88,23 @@ MIDDLEWARE = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    # "https://proud-pond-0e49cde1e.6.azurestaticapps.net",
-    # "https://supermover-backend.azurewebsites.net",
     "http://localhost:5173",  # If testing locally
     "http://127.0.0.1:8080",
-    "https://super-mover-crm-frontend-isff.vercel.app/"
+    "https://super-mover-crm-frontend-isff.vercel.app",
+    "https://wonderful-pebble-04715ca00.6.azurestaticapps.net"
 ]
 
 
 CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins (for testing, not recommended in production)
 
-
 CSRF_TRUSTED_ORIGINS = [
     "http://13.48.193.139",
     "https://supermover-backend.azurewebsites.net",
-    "https://proud-pond-0e49cde1e.6.azurestaticapps.net"
+    "https://proud-pond-0e49cde1e.6.azurestaticapps.net",
+    "https://super-mover-crm-frontend-isff.vercel.app"
 ]
 
+ALLOWED_HOSTS = ["13.60.162.68"]
 
 
 CORS_ALLOW_HEADERS = [
