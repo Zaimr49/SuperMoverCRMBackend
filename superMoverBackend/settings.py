@@ -29,7 +29,9 @@ SECRET_KEY = 'django-insecure-(w$^-dgy7kp+x7ma54(k#q&t1r4!#%9^z=2lukv9nbr4mwsi_g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["13.48.193.139"]
+
 
 
 # Application definition
@@ -98,6 +100,7 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins (for testing, not recommended
 
 
 CSRF_TRUSTED_ORIGINS = [
+    "http://13.48.193.139",
     "https://supermover-backend.azurewebsites.net",
     "https://proud-pond-0e49cde1e.6.azurestaticapps.net"
 ]
