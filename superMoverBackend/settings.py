@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'core',
     'crm',
-    'integration'
+    'integration',
+    'whitenoise.runserver_nostatic'
 ]
 
 AUTH_USER_MODEL = 'core.User'  # Replace 'your_app' with your actual app
@@ -84,6 +85,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 
